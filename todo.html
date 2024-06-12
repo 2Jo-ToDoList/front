@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- navbar -->
+    <div class="container">
+        <h3 class="nav1" id='weather-msg'>Weather</h3>
+        <div class = 'nav-img'>
+            <img class= 'chick' src="./chick.png" alt="">
+            <h1 class="nav2">To Do List</h1>
+            <img class= 'chick' src="./chick.png" alt="">
+        </div>
+        
+        <h3 class="nav3" id='seoul-date'>Date</h3>
+    </div>
+    <!-- main -->
+    <div class="input-container">
+        <div class="block">
+            2024.06.12 안녕하세요.
+        </div>
+        <div class="block">
+            2024.06.12 안녕하세요.
+        </div>
+        <div class="block">
+            2024.06.12 안녕하세요.
+        </div>
+        <div class="block">
+            2024.06.12 안녕하세요.
+        </div>
+    </div>
+    <div class="footer">
+        <input class="list" type="date">
+        <input class="list" type="text" placeholder="오늘의 할 일을 적어주세요!">
+        <button>기록하기</button>
+    </div>
+
+    </div>
+    </div>
+    <script>
+        let weather_url = "http://spartacodingclub.shop/sparta_api/weather/seoul";
+        fetch(weather_url)
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                let temp = data['temp']
+                let message = `오늘 날씨는 ${temp}ºC`
+                $('#weather-msg').text(message)
+            })
+
+        let time_url = "https://worldtimeapi.org/api/timezone/Asia/Seoul"
+        fetch(time_url)
+            .then(res => res.json())
+            .then(data => {
+                let datetime = data['datetime'].split('T')[0];
+                let time2 = `오늘 날짜는 ${datetime}`
+                $('#seoul-date').text(time2)
+            })
+    </script>
+</body>
+
+</html>
